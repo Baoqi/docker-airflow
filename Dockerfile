@@ -44,6 +44,9 @@ RUN set -ex \
         apt-utils \
         curl \
         netcat \
+        vim \
+        mysql-client \
+        libmysqlclient-dev \
         locales \
     && sed -i 's/^# en_US.UTF-8 UTF-8$/en_US.UTF-8 UTF-8/g' /etc/locale.gen \
     && locale-gen \
@@ -55,7 +58,7 @@ RUN set -ex \
     && pip install pyOpenSSL \
     && pip install ndg-httpsclient \
     && pip install pyasn1 \
-    && pip install apache-airflow[crypto,celery,postgres,hive,jdbc]==$AIRFLOW_VERSION \
+    && pip install apache-airflow[crypto,celery,postgres,hive,jdbc,mysql]==$AIRFLOW_VERSION \
     && pip install celery[redis]==3.1.17 \
     && apt-get purge --auto-remove -yqq $buildDeps \
     && apt-get clean \
