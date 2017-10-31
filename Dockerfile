@@ -81,4 +81,4 @@ EXPOSE 8080 5555 8793
 # WORKDIR ${AIRFLOW_HOME}
 # ENTRYPOINT ["/entrypoint.sh"]
 
-ENTRYPOINT ["airflow initdb && exec airflow webserver && exec airflow scheduler"]
+ENTRYPOINT ["airflow initdb &&  airflow webserver & airflow scheduler"]
