@@ -72,6 +72,7 @@ RUN set -ex \
 
 # COPY script/entrypoint.sh /entrypoint.sh
 # COPY config/airflow.cfg ${AIRFLOW_HOME}/airflow.cfg
+COPY script/entrypoint_new.sh /entrypoint_new.sh
 
 # RUN chown -R airflow: ${AIRFLOW_HOME}
 
@@ -79,6 +80,4 @@ EXPOSE 8080 5555 8793
 
 # USER airflow
 # WORKDIR ${AIRFLOW_HOME}
-# ENTRYPOINT ["/entrypoint.sh"]
-
-ENTRYPOINT ["/usr/local/bin/airflow initdb &&  /usr/local/bin/airflow webserver & /usr/local/bin/airflow scheduler"]
+ENTRYPOINT ["/entrypoint_new.sh"]
