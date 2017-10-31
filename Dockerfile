@@ -70,13 +70,15 @@ RUN set -ex \
         /usr/share/doc \
         /usr/share/doc-base
 
-COPY script/entrypoint.sh /entrypoint.sh
-COPY config/airflow.cfg ${AIRFLOW_HOME}/airflow.cfg
+# COPY script/entrypoint.sh /entrypoint.sh
+# COPY config/airflow.cfg ${AIRFLOW_HOME}/airflow.cfg
 
-RUN chown -R airflow: ${AIRFLOW_HOME}
+# RUN chown -R airflow: ${AIRFLOW_HOME}
 
 EXPOSE 8080 5555 8793
 
-USER airflow
-WORKDIR ${AIRFLOW_HOME}
-ENTRYPOINT ["/entrypoint.sh"]
+# USER airflow
+# WORKDIR ${AIRFLOW_HOME}
+# ENTRYPOINT ["/entrypoint.sh"]
+
+ENTRYPOINT ["airflow initdb && exec airflow webserver && exec airflow scheduler"]
